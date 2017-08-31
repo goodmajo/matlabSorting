@@ -48,8 +48,6 @@ classdef matlabSorting
         end
         
         %% Merge Sort
-        % This one is adapted really closely from the MIT Intro to
-        % Algorithms book.
         function [sortedVector] = mergeSort(vector)
             if length(vector) > 1
                 if mod(length(vector),2) == 0
@@ -61,27 +59,10 @@ classdef matlabSorting
                 end
                 leftRecursive = mergeSort(left) ;
                 rightRecursive = mergeSort(right) ;
-                sortedVector = matlabSorting.merge(leftRecursive, rightRecursive) ;
+            end
             else
-                sortedVector = vector;
-            end
-        end
-
-        function [ mergedVector ] = merge(left, right)
-            mergedVector = zeros(1,length(left) + length(right));
-            i = 1; j = 1;
-            for k=1:(length(left)+length(right))
-                if i > length(left)
-                    mergedVector(k) = right(j);
-                    j = j+1;
-                elseif j>length(right)
-                    mergedVector(k) = left(i); i = i + 1;
-                elseif left(i) <= right(j)
-                    mergedVector(k) = left(i); i = i + 1;
-                else
-                    mergedVector(k) = right(j); j = j + 1;
-                end
-            end
+                
+            
         end
     end
     

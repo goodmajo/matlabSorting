@@ -6,7 +6,7 @@ clear, clc, close all
 
 %% Generate an array of 1000 random numbers between 0 and 100
 % from https://www.mathworks.com/help/matlab/math/floating-point-numbers-within-specific-range.html
-lowVal = 0; hiVal = 100; n = 1000 ;
+lowVal = 0; hiVal = 100; n = 10 ;
 randomNumbers = (hiVal-lowVal).*rand(n,1) + lowVal;
 
 %% Turn on Profiler, prepare displayArray
@@ -43,12 +43,7 @@ profile off
 %displayArray(2,:) = insertionSortedLargeToSmall ;
 %disp(displayArray)
 
-%% Merge Sort
-profile resume
-mergeSortedSmallToLarge = matlabSorting.mergeSort(randomNumbers) ;
-profile off
-%displayArray(2,:) = insertionSortedSmallToLarge ;
-%disp(displayArray)
+%%
 
 
 %% Display Profile
