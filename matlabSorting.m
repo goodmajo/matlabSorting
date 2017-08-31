@@ -6,7 +6,7 @@ classdef matlabSorting
         %% Stupid Sort
         function[ sortedVector ] = stupidSortSmallToLarge(vector)
             initialSize = length(vector) ;
-            sortedVector = zeros(initialSize,1) ; 
+            sortedVector = zeros(1,initialSize) ; 
            for i = 1:initialSize
                sortedVector(i) = min(vector) ;
                vector(vector == min(vector)) = [] ;
@@ -59,8 +59,8 @@ classdef matlabSorting
                     left = vector(1:floor(length(vector)/2)) ;
                     right = vector((floor(length(vector)/2) + 1) : length(vector));                
                 end
-                leftRecursive = mergeSort(left) ;
-                rightRecursive = mergeSort(right) ;
+                leftRecursive = matlabSorting.mergeSort(left) ;
+                rightRecursive = matlabSorting.mergeSort(right) ;
                 sortedVector = matlabSorting.merge(leftRecursive, rightRecursive) ;
             else
                 sortedVector = vector;
@@ -83,6 +83,27 @@ classdef matlabSorting
                 end
             end
         end
+ %% Bubble Sort
+        function [ vector ] = bubbleSort(vector)
+            n = length(vector) ;
+            while n > 0
+                newN = 0 ;
+                    for i = 2:(length(vector))
+                       if vector(i - 1) > vector(i)
+                           vector = matlabSorting.swap(vector, i, i - 1) ;
+                           newN = i ;
+                       end
+                    end
+            n = newN ;
+            end
+        end
+
+        function [ swappedVector ] = swap(vector, index1, index2)
+            lowerIndex = min([index1 index2]) ; higherIndex = max([index1 index2]) ;
+            swappedVector = [vector(1:(lowerIndex - 1)) vector(higherIndex) vector(lowerIndex+1:(higherIndex - 1)) vector(lowerIndex) vector((higherIndex + 1):length(vector))] ;
+        end        
+       
+        
+% END METHODS
     end
-    
 end
