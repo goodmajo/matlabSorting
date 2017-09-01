@@ -12,32 +12,31 @@ randomNumbers = (hiVal-lowVal).*rand(1,n) + lowVal;
 %% Turn on Profiler, prepare displayArray
 profile on -history -timer 'cpu'
 profile off
-displayArray(1,:) = randomNumbers ; 
 
-%% Stupid Sort
-% Small to Large
+% %% Stupid Sort
 profile resume
-stupidSortSmallToLarge = matlabSorting.stupidSortSmallToLarge(randomNumbers) ;
+stupidSorted = matlabSorting.stupidSortSmallToLarge(randomNumbers) ;
 profile off
-%displayArray(2,:) = stupidSortSmallToLarge; disp(displayArray)
 
 %% Insertion Sort
 profile resume
-insertionSortedSmallToLarge = matlabSorting.insertionSortSmallToLarge(randomNumbers) ;
+insertionSorted = matlabSorting.insertionSortSmallToLarge(randomNumbers) ;
 profile off
-%displayArray(2,:) = insertionSortedSmallToLarge ; disp(displayArray)
 
 %% Merge Sort
 profile resume
-mergeSortedSmallToLarge = matlabSorting.mergeSort(randomNumbers) ;
+mergeSorted = matlabSorting.mergeSort(randomNumbers) ;
 profile off
-%displayArray(2,:) = insertionSortedSmallToLarge ; disp(displayArray)
 
 %% Bubble Sort
 profile resume
-bubbleSortedSmallToLarge = matlabSorting.bubbleSort(randomNumbers) ;
+bubbleSorted = matlabSorting.bubbleSort(randomNumbers) ;
 profile off
-%displayArray(2,:) = bubbleSortedSmallToLarge ; disp(displayArray)
+
+%% Quick Sort
+profile resume
+quickSorted = matlabSorting.quickSort(randomNumbers) ;
+profile off
 
 %% Display Profile
 profile viewer

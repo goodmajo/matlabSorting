@@ -59,9 +59,9 @@ classdef matlabSorting
                     left = vector(1:floor(length(vector)/2)) ;
                     right = vector((floor(length(vector)/2) + 1) : length(vector));                
                 end
-                leftRecursive = matlabSorting.mergeSort(left) ;
-                rightRecursive = matlabSorting.mergeSort(right) ;
-                sortedVector = matlabSorting.merge(leftRecursive, rightRecursive) ;
+                left = matlabSorting.mergeSort(left) ;
+                right = matlabSorting.mergeSort(right) ;
+                sortedVector = matlabSorting.merge(left, right) ;
             else
                 sortedVector = vector;
             end
@@ -98,12 +98,34 @@ classdef matlabSorting
             end
         end
 
-        function [ swappedVector ] = swap(vector, index1, index2)
-            lowerIndex = min([index1 index2]) ; higherIndex = max([index1 index2]) ;
-            swappedVector = [vector(1:(lowerIndex - 1)) vector(higherIndex) vector(lowerIndex+1:(higherIndex - 1)) vector(lowerIndex) vector((higherIndex + 1):length(vector))] ;
-        end        
-       
-        
+        function [ vector ] = swap(vector, index1, index2)
+            vector([index1 index2]) = vector([index2 index1]) ;
+        end
+
+%% QuickSort
+% I chose to set the pivot point to the value closest to the median of all
+% the elements of the array.
+        function [vector] = quickSort(vector)
+            left = [] ; middle = [] ; right = [];
+            if length(vector) > 1
+                [~, pivotIndex] = min(abs(vector - median(vector))) ;
+                for i = 1:length(vector)
+                   if vector(i) < vector(pivotIndex)
+                       left = [left vector(i)] ;
+                   end
+                   if vector(i) > vector(pivotIndex)
+                       right = [right vector(i)] ;
+                   end
+                   if vector(i) == vector(pivotIndex)
+                       middle = [middle vector(i)] ;
+                   end
+                end
+                left = matlabSorting.quickSort(left) ;
+                right = matlabSorting.quickSort(right) ;
+                vector = [left middle right] ;
+            end
+        end
+
 % END METHODS
     end
 end
