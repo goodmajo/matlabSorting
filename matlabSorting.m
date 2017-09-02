@@ -87,14 +87,14 @@ classdef matlabSorting
         function [ vector ] = bubbleSort(vector)
             n = length(vector) ;
             while n > 0
-                newN = 0 ;
+                m = 0 ;
                     for i = 2:(length(vector))
                        if vector(i - 1) > vector(i)
                            vector = matlabSorting.swap(vector, i, i - 1) ;
-                           newN = i ;
+                           m = i ;
                        end
                     end
-            n = newN ;
+            n = m ;
             end
         end
 
@@ -112,11 +112,9 @@ classdef matlabSorting
                 for i = 1:length(vector)
                    if vector(i) < vector(pivotIndex)
                        left = [left vector(i)] ;
-                   end
-                   if vector(i) > vector(pivotIndex)
+                   elseif vector(i) > vector(pivotIndex)
                        right = [right vector(i)] ;
-                   end
-                   if vector(i) == vector(pivotIndex)
+                   else
                        middle = [middle vector(i)] ;
                    end
                 end
